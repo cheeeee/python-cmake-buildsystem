@@ -549,9 +549,10 @@ if(IS_PY2)
 
 # If openssl is NOT available then build some other hash implementations on UNIX
 set(HASH_NOT_AVAILABLE ON)
-if(NOT WIN32 AND OPENSSL_LIBRARIES)
-  set(HASH_NOT_AVAILABLE OFF)
-endif()
+# Avoiding using hash from openssl
+#if(NOT WIN32 AND OPENSSL_LIBRARIES)
+#  set(HASH_NOT_AVAILABLE OFF)
+#endif()
 
 add_python_extension(_md5 REQUIRES HASH_NOT_AVAILABLE ${WIN32_BUILTIN} SOURCES md5.c md5module.c)
 add_python_extension(_sha REQUIRES HASH_NOT_AVAILABLE ${WIN32_BUILTIN} SOURCES shamodule.c)

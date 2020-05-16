@@ -85,7 +85,7 @@ function(add_python_extension name)
     endforeach()
 
     if(NOT ADD_PYTHON_EXTENSION_ALWAYS_BUILTIN)
-        # Add options that the extention is either external to libpython or
+        # Add options that the extension is either external to libpython or
         # builtin.  These will be marked as advanced unless different from default
         # values
         if(NOT ADD_PYTHON_EXTENSION_BUILTIN)

@@ -10,7 +10,6 @@ set_property(
     TARGET python
     PROPERTY RUNTIME_OUTPUT_DIRECTORY ${BIN_BUILD_DIR}
     )
-
 # Link against the shared libpython if it was built, otherwise use the static
 # version.
 if(BUILD_LIBPYTHON_SHARED)
