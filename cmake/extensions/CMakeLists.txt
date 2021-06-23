@@ -27,9 +27,6 @@ if(WIN32)
     set(WIN32_BUILTIN BUILTIN)
 endif()
 
-# XXX Following modules are missing:
-# lzma
-
 add_python_extension(array ${WIN32_BUILTIN} SOURCES arraymodule.c)
 add_python_extension(audioop ${WIN32_BUILTIN} SOURCES audioop.c)
 add_python_extension(_bisect ${WIN32_BUILTIN} SOURCES _bisectmodule.c)
@@ -658,6 +655,13 @@ add_python_extension(_hashlib
 if(ENABLE_HASHLIB AND CMAKE_C_COMPILER_ID MATCHES GNU)
     set_property(SOURCE ${SRC_DIR}/Modules/_hashopenssl.c PROPERTY COMPILE_FLAGS -Wno-deprecated-declarations)
 endif()
+add_python_extension(_lzma
+    REQUIRES LZMA_INCLUDE_PATH LZMA_LIBRARY
+    SOURCES _lzmamodule.c
+    DEFINITIONS MODULE_NAME="lzma" LZMA_API_STATIC=1
+    INCLUDEDIRS ${LZMA_INCLUDE_PATH}
+    LIBRARIES ${LZMA_LIBRARY}
+)
 add_python_extension(readline
     REQUIRES READLINE_INCLUDE_PATH READLINE_LIBRARY CURSES_LIBRARIES HAVE_READLINE_READLINE_H
     SOURCES readline.c
